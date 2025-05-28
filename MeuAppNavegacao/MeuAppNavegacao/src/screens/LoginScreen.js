@@ -1,20 +1,33 @@
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import React, { useState } from 'react';
 import { View, Text, TextInput, Button, StyleSheet, Alert, Dimensions } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const windowWidth = Dimensions.get('window').width;
 
 export default function LoginScreen({ navigation }) {
   const [login, setLogin] = useState('');
   const [senha, setSenha] = useState('');
+  const [loginkey, setLoginkey] = useState('')
 
-  const handleLogin = () => {
-    if (login === 'admin' && senha === '1234') {
+  const handleLogin = async (loginkey) => {
+    if (login === 'admin' && senha === '123') {
       navigation.replace('Home');
+      try {
+        await AsyncStorage.setItem('key', 'logged' JSON.stringify(loginkey));
+      }catch (error){
+        console.log("Erro ao salvar login", error)
+      }
     } else {
-      console.log('Login incorreto'); // Debug opcional
-      Alert.alert('Erro', 'Login ou senha incorretos!');
+      console.log('Login incorreto');
+      Alert.alert('Login ou senha incorretos', errror);
     }
   };
+  const getKey = async () =>{
+    try{
+      const sotredKey = await AsyncStorage()
+    }
+  }
 
   return (
     <View style={styles.container}>

@@ -9,6 +9,7 @@ import ProfileScreen from './src/screens/ProfileScreen';
 const Stack = createStackNavigator();
 
 export default function App() {
+  if() {
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName="Login">
@@ -19,4 +20,5 @@ export default function App() {
       </Stack.Navigator>
     </NavigationContainer>
   );
+  }
 }
