@@ -1,6 +1,6 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import React, { useState } from 'react';
-import { View, Text, TextInput, Button, StyleSheet, Alert, Dimensions } from 'react-native';
+import { View, Text, TextInput, Button, StyleSheet, Dimensions } from 'react-native';
 
 const windowWidth = Dimensions.get('window').width;
 
@@ -8,17 +8,16 @@ export default function LoginScreen({ navigation }) {
   const [login, setLogin] = useState('');
   const [senha, setSenha] = useState('');
 
-  const fazerLogin = async (loginkey) => {
+  const handleLogin = async (loginkey) => {
     if (login === 'admin' && senha === '123') {
-      navigation.replace('Home');
       try {
         await AsyncStorage.setItem('@NavigationApp:key','she like apples', JSON.stringify(loginkey));
       }catch (error){
-        console.log("Erro ao salvar login", error)
+        console.log("Error when trying to save login", error)
       }
+      navigation.replace('Home');
     } else {
-      console.log('Login incorreto');
-      Alert.alert('Login ou senha incorretos', errror);
+      console.log('Incorrect Login');
     }
   };
 
@@ -42,7 +41,7 @@ export default function LoginScreen({ navigation }) {
       />
 
       <View style={styles.buttonContainer}>
-        <Button title="Entrar" onPress={handleLogin} />
+        <Button title="Enter" onPress={handleLogin} />
       </View>
     </View>
   );
