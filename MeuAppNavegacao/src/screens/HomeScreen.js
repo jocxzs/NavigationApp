@@ -1,3 +1,4 @@
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import React from 'react';
 import { View, Text, Button, StyleSheet, Dimensions } from 'react-native';
 
@@ -19,6 +20,12 @@ export default function HomeScreen({ navigation }) {
         <Button
           title="Go to Profile"
           onPress={() => navigation.navigate('Profile')}
+        />
+      </View>
+      <View style={styles.buttonContainer}>
+        <Button
+          title="Log Off"
+          onPress={ async (loginkey) => {navigation.navigate('Login'); await AsyncStorage.setItem(null, JSON.stringify(loginkey));}}
         />
       </View>
     </View>
